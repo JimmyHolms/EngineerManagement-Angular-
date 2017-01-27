@@ -1,0 +1,288 @@
+<div class="inner-wrapper">
+
+  <section role="main" class="content-body">
+    <header class="page-header">
+      <h2>Job History</h2>
+      <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+          <li>
+            <a href="/dashboard">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+          <!--<li><span>Dashboard</span></li>-->
+          <!--<li><span>Basic</span></li>-->
+        </ol>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+      </div>
+    </header>
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="col-md-12">
+
+          <div class="tabs">
+            <div class="btn-group">
+           <!--   <a href="/addjob" class="mb-xs mt-xs mr-xs btn btn-default" role="button">New Job</a>
+              <button data-toggle="button" class="mb-xs mt-xs mr-xs btn btn-default dropdown-toggle" type="button" aria-expanded="false">New Job <span class="caret"></span></button>-->
+              <!--<ul role="menu" class="dropdown-menu">
+                <li><a href="#">lorem Lipsum 0</a></li>
+                <li><a href="#">lorem Lipsum 1</a></li>
+                <li><a href="#">lorem Lipsum 2</a></li>
+                <li class="divider"></li>
+                <li><a href="#">lorem Lipsum 3</a></li>
+              </ul>-->
+            </div>
+            <ul class="nav nav-tabs tabs-primary pull-right">
+              <li class="active"><a href="#overview" data-toggle="tab">Job List</a></li>
+                <!--<li><a href="#map" data-toggle="tab">Map</a></li>
+            <li><a href="#scheduler" data-toggle="tab">Scheduler</a></li>-->
+            </ul>
+            <div class="tab-content">
+              <div id="overview" class="tab-pane active">
+                <section class="panel">
+                  <!-- <header class="panel-heading">
+<div class="panel-actions">
+<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+</div>
+
+<h2 class="panel-title">Actions</h2>
+</header> -->
+                  <div class="panel-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+                        <thead>
+                          <tr>
+                            <th>Job Category</th>
+                            <th>Customer</th>
+                            <th>Company</th>
+                            <th>Posted</th>
+                            <th>Scheduled</th>
+                            <th>Status</th>
+                            <th>Assigned to</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody class="gradeX">
+                          <tr ng-repeat="job in customerjobhistoryCtrl.atlasJobs | filter:{customer: {user_id: Profile.user_id}}   ">
+                            <td>{{job.category_l1}}<br/>{{job.category_l2}}</td>
+                            <td>{{job.customer.full_name}}</td>
+                            <td>{{job.customer.company_name}}</td>
+                            <td>{{job.created_datetime | date:'medium'}}</td>
+                            <td>{{job.scheduled_datetime | date:'medium'}}</td>
+                            <td>
+                              <div class="progress progress-sm progress-half-rounded m-none mt-xs light">
+                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                                  style="width: 100%;">
+                                  {{job.current_status}}
+                                </div><span>100%</span>
+                              </div>
+                            </td>
+                            <td>
+                             <!--- <select readonly class="form-control" ng-model="job.selectedEngineer" ng-options="engineer.full_name for engineer in customerjobhistoryCtrl.atlasEngineers | orderBy:'full_name' track by engineer.user_id"
+                               ></select>-->
+							   <input readonly type="text" id="inputDefault"  ng-model='job.selectedEngineer.full_name'  name='full_name' class="form-control ng-pristine ng-untouched ng-valid ng-empty" aria-invalid="false">
+							
+                            </td>
+                            <td class="actions">
+                              <a href="" data-toggle="tooltip" title="Show Job Details" ng-click="customerjobhistoryCtrl.setCurrentJob(job)"><i class="fa fa-server fa-2x" aria-hidden="true"></i></a>
+                              <a href="" data-toggle="tooltip" title="Edit Job"  ng-click="customerjobhistoryCtrl.setCurrentJobedit(job)"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></a>
+                             <!-- <a href=""><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+                              <a href=""><i class="fa fa-map-marker" aria-hidden="true"></i></a>-->
+                            </td>
+                          </tr>
+                        </tbody>
+                        {{customerjobhistoryCtrl.populateEngineers();}}
+                      </table>
+                    </div>
+                  </div>
+                  <!--<div class="row datatables-footer">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="dataTables_info" id="datatable-default_info" role="status" aria-live="polite">Showing 1 to 1 of 1 entries</div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="dataTables_paginate paging_bs_normal" id="datatable-default_paginate">
+                        <ul class="pagination">
+                          <li class="prev disabled">
+                            <a href="javascript:;"><span class="fa fa-chevron-left"></span></a>
+                          </li>
+                          <li class="active"><a href="javascript:;">1</a></li>
+                          <li><a href="javascript:;">2</a></li>
+                          <li><a href="javascript:;">3</a></li>
+                          <li><a href="javascript:;">4</a></li>
+                          <li><a href="javascript:;">5</a></li>
+
+                          <li class="next disabled"><a href="javascript:;"><span class="fa fa-chevron-right"></span></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>-->
+                </section>
+              </div>
+              <div id="map" class="tab-pane">
+
+                <div>Under Construction</div>
+                <!--<form class="form-horizontal" method="get">
+                  <h4 class="mb-xlg">Personal Information</h4>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileFirstName">First Name</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileFirstName">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileLastName">Last Name</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileLastName">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileAddress">Address</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileAddress">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileCompany">Company</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileCompany">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <hr class="dotted tall">
+                  <h4 class="mb-xlg">About Yourself</h4>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileBio">Biographical Info</label>
+                      <div class="col-md-8">
+                        <textarea class="form-control" rows="3" id="profileBio"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-xs-3 control-label mt-xs pt-none">Public</label>
+                      <div class="col-md-8">
+                        <div class="checkbox-custom checkbox-default checkbox-inline mt-xs">
+                          <input type="checkbox" checked="" id="profilePublic">
+                          <label for="profilePublic"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <hr class="dotted tall">
+                  <h4 class="mb-xlg">Change Password</h4>
+                  <fieldset class="mb-xl">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileNewPassword">New Password</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileNewPassword">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileNewPasswordRepeat">Repeat New Password</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileNewPasswordRepeat">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="panel-footer">
+                    <div class="row">
+                      <div class="col-md-9 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>-->
+
+              </div>
+
+              <div id="scheduler" class="tab-pane">
+
+                <!--<form class="form-horizontal" method="get">
+                  <h4 class="mb-xlg">Personal Information</h4>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileFirstName">First Name</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileFirstName">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileLastName">Last Name</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileLastName">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileAddress">Address</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileAddress">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileCompany">Company</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileCompany">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <hr class="dotted tall">
+                  <h4 class="mb-xlg">About Yourself</h4>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileBio">Biographical Info</label>
+                      <div class="col-md-8">
+                        <textarea class="form-control" rows="3" id="profileBio"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-xs-3 control-label mt-xs pt-none">Public</label>
+                      <div class="col-md-8">
+                        <div class="checkbox-custom checkbox-default checkbox-inline mt-xs">
+                          <input type="checkbox" checked="" id="profilePublic">
+                          <label for="profilePublic"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <hr class="dotted tall">
+                  <h4 class="mb-xlg">Change Password</h4>
+                  <fieldset class="mb-xl">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileNewPassword">New Password</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileNewPassword">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="profileNewPasswordRepeat">Repeat New Password</label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="profileNewPasswordRepeat">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="panel-footer">
+                    <div class="row">
+                      <div class="col-md-9 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>-->
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- end: page -->
+</div>

@@ -1,0 +1,147 @@
+<!-- start: sidebar -->
+<aside id="sidebar-left" class="sidebar-left">
+	<div class="sidebar-header">
+		<div class="sidebar-title">
+		</div>
+		<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="click.close-left-sidebar">
+			<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+		</div>
+	</div>
+	<div class="nano">
+		<div ng-show="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('')}" class="nano-content">
+			<nav id="menu" class="nav-main" role="navigation">
+				<ul class="nav nav-main"  ng-show="$ctrl.get().user_type != 'Customer'">
+					<li class="">
+						<a href="/dashboard">
+							<i class="fa fa-home" aria-hidden="true"></i>
+							<span>Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-parent">
+						<a href="#">
+							<i class="fa fa-table" aria-hidden="true"></i>
+							<span>Jobs</span>
+						</a>
+						<ul class="nav nav-children">
+							<li><a href="/addjob">Add New Job</a></li>
+							<li><a href="/joblistbyengineer">Jobs List By Engineer</a></li>
+							<li><a href="/managejobcategories">Manage Job Categories</a></li>
+						</ul>
+					</li>
+					<li class="nav-parent">
+						<a href="#">
+							<i class="fa fa-table" aria-hidden="true"></i>
+							<span>Invoice / Payments</span>
+						</a>
+							<ul class="nav nav-children">
+							<li><a href="/activeinvoices">Active Invoices</a></li>
+							<li><a href="/submittedinvoices">Submitted Invoices</a></li>							
+							<li><a href="/approvedinvoices">Approved Invoices</a></li>
+							<li><a href="/paidinvoices">Paid Invoices</a></li>
+							</ul>
+						<!--<ul class="nav nav-children">
+							<li><a href="#">Job Inventory</a></li>
+							<li><a href="#">Job Expense</a></li>
+							<li><a href="#">Final Job Cost</a></li>
+							<li><a href="#">Invoice</a></li>
+							<li><a href="#">Received Payments</a></li>
+						</ul>-->
+					</li>
+					<li class="nav-parent">
+						<a href="#">
+							<i class="fa fa-table" aria-hidden="true"></i>
+							<span>Engineers</span>
+						</a>
+						<ul class="nav nav-children">
+							<li><a href="/addengineer">Create New Engineer</a></li>
+							<li><a href="/engineerlist">Engineer List</a></li>
+							<li><a href="/engineerapproval">Engineer Approvals</a></li>
+							<!--<li><a href="/engineercalendar">Engineers Calendar</a></li>-->
+							<!--<li><a href="#">New Applicants</a></li>
+							<li><a href="#">With Active Jobs</a></li>
+							<li><a href="#">Having No Jobs</a></li>
+							<li><a href="#">Worksheet</a></li>
+							<li><a href="#">Schedules</a></li>
+							<li><a href="#">Due Payments</a></li>
+							<li><a href="#">Notification</a></li>-->
+						</ul>
+					</li>
+					<li class="nav-parent">
+						<a href="#">
+							<i class="fa fa-table" aria-hidden="true"></i>
+							<span>Customers</span>
+						</a>
+						<ul class="nav nav-children">
+							<li><a href="/addcustomer">Create New Customer</a></li>
+							<li><a href="/customerlist">Customer List</a></li>
+							<li><a href="/customerapproval">Customer Approvals</a></li>
+							<!--<li><a href="#">New Applicants</a></li>
+							<li><a href="#">With Active Jobs</a></li>
+							<li><a href="#">Having No Jobs</a></li>
+							<li><a href="#">Worksheet</a></li>
+							<li><a href="#">Schedules</a></li>
+							<li><a href="#">Due Payments</a></li>
+							<li><a href="#">Notification</a></li>-->
+						</ul>
+					</li>
+					<li ng-show="$ctrl.isAdmin()" class="nav-parent">
+						<a href="#">
+							<i class="fa fa-table" aria-hidden="true"></i>
+							<span>Users</span>
+						</a>
+						<ul class="nav nav-children">
+							<li><a href="/adduser">Create New User</a></li>
+							<li><a href="/userlist">User List</a></li>
+							<!--<li><a href="user_create.php">Active Users</a></li>
+							<li><a href="user_create.php">In-Active Users</a></li>-->
+						</ul>
+					</li>
+				</ul>
+				
+	<ul class="nav nav-main" ng-show="$ctrl.get().user_type == 'Customer'">
+				
+					<li class="">
+						<a href="/customerprofile">
+							<i class="fa fa-home" aria-hidden="true"></i>
+							<span>Your Profile</span>
+						</a>
+					</li>
+						<li class="">
+						<a href="/updatecustomerprofile">
+							<i  class="fa fa-address-card-o" aria-hidden="true"></i>
+							<span >Update Profile</span>
+						</a>
+					</li>
+						<li class="">
+						<a href="/postjobcustomer">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+							<span>Post New Job</span>
+						</a>
+					</li>
+						<li class="">
+						<a href="/customerchangepassword">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+							<span>Change Password</span>
+						</a>
+					</li>
+						<li class="">
+						<!--<a href="/customerjobhistory">-->
+						<a href="/customerjobhistory">
+							<i class="fa fa-tasks" aria-hidden="true"></i>
+							<span>Job History</span>
+						</a>
+					</li>
+						<li class="">
+						<!--<a href="/customerjobhistory">-->
+						<a href="/aprovedcustomerinvoices">
+							<i class="fa fa-tasks" aria-hidden="true"></i>
+							<span>Aprove Invoice</span>
+						</a>
+					</li>
+				</ul>
+
+			</nav>
+		</div>
+	</div>
+</aside>
+<!-- end: sidebar -->

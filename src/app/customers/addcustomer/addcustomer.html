@@ -1,0 +1,231 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2>Add New Customer</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Customers</span></li>
+					<li><span>Add</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+		<div class="row">
+			<div class="col-lg-12">
+				<form name="form" id="form" ng-submit="addcustomerCtrl.add()" novalidate>
+					<section class="panel">
+						<div class="alert alert-success" id="success-alert"><strong>Success!</strong> Customer Added Successfully.</div>
+						<div id="error-list" ></div>
+						<div class="alert alert-info" id="cancel-alert"><strong>Cancelled!</strong> Customer Details Reset to Default Values.</div>
+						<div class="alert alert-warning" id="validation-alert"><strong>Missing Info!</strong> Customer Details Requires More Information.</div>
+						<div class="alert alert-danger" id="failure-image-alert"><strong>Failure!</strong> Image Upload Failed.</div>
+						<div class="alert alert-danger" id="Conflictfailure-alert"><strong>Failure!</strong>Conflict: Email Address Already Registered</div>		
+						<header class="panel-heading">
+							<h2 class="panel-title">Customer Details</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="col-md-3">
+									<div class="thumbnail">
+										<img src="/assets/images/avatar.jpg" id="customer_photo" />
+									</div>
+									<div class="text-center customimage_divinput">
+										<span class="btn btn-primary">Choose Image</span>
+										<input type="file" class="btn btn-primary" id="photo_input" name="upload_image"  accept="image/*"></span>
+										<!--<span class="btn btn-info" ng-show="$flow.files.length" flow-btn>Change</span>
+										<span class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</span>-->
+									</div>
+								</div>
+								<div class="col-md-8 medium_left">
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="full_name">Full Name</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" name="full_name" id="full_name" ng-model="addcustomerCtrl.customer.full_name">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="email">Email</label>
+										<div class="col-md-7">
+											<input type="email" class="form-control" name="email" id="email" ng-model="addcustomerCtrl.customer.email">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="password">Password</label>
+										<div class="col-md-7">
+											<input type="password" class="form-control" name="password" id="password" ng-model="addcustomerCtrl.customer.password">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="confirmPassword">Confirm Password</label>
+										<div class="col-md-7">
+											<input type="password" class="form-control" name="confirmPassword" id="confirmPassword" ng-model="addcustomerCtrl.confirmPassword">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="company_name">Company Name</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" name="company_name" id="company_name" ng-model="addcustomerCtrl.customer.company_name">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="designation">Position</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" name="designation" id="designation" ng-model="addcustomerCtrl.customer.designation">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="mobile_number">Mobile Number</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" name="mobile_number" id="mobile_number" ng-model="addcustomerCtrl.customer.mobile_number">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</section>
+					<section class="panel">
+						<div class="alert alert-warning" id="validation-address-alert"><strong>Missing Info!</strong> Address Details Requires More Information.</div>
+						<header class="panel-heading">
+							<h2 id="addresses" class="panel-title">Addresses</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="table-responsive">
+									<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+										<thead>
+											<tr>
+												<th>Address</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody class="gradeX">
+											<tr ng-repeat="address in addcustomerCtrl.customer.addresses">
+												<td>{{addcustomerCtrl.getReadableAddress(address)}}</td>
+												<td>
+													<a href="" data-toggle="tooltip" title="Remove Address" ng-click="addcustomerCtrl.removeAddress(address)"><i class="fa fa-close text-danger" aria-hidden="true"></i></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="form-group">
+								<div id="required">
+									<label class="col-md-2 control-label">Site Name</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control" id="site_name" ng-model="addcustomerCtrl.currentAddress.site_name">
+									</div>
+								</div>
+								<label class="col-md-2 control-label">Street</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="street_address" ng-model="addcustomerCtrl.currentAddress.street_address">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">City</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="city" ng-model="addcustomerCtrl.currentAddress.city">
+								</div>
+								<label class="col-md-2 control-label">State</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="state" ng-model="addcustomerCtrl.currentAddress.state">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">Country</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="country" ng-model="addcustomerCtrl.currentAddress.country">
+								</div>
+								<label class="col-md-2 control-label">Post Code</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="zip_code" ng-model="addcustomerCtrl.currentAddress.zip_code">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">Landline Number</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="phone_number" ng-model="addcustomerCtrl.currentAddress.phone_number">
+								</div>
+								<div class="col-md-2">
+									<a href="" data-toggle="tooltip" title="Add Address" ng-click="addcustomerCtrl.addAddress()"><i class="fa fa-plus fa-2x cust_primary" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+					</section>
+					<!--<section class="panel">
+						<div class="alert alert-warning" id="validation-card-alert"><strong>Missing Info!</strong> Card Details Requires More Information.</div>
+						<header class="panel-heading">
+							<h2 class="panel-title">Credit Cards</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="table-responsive">
+									<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+										<thead>
+											<tr>
+												<th>Card Name</th>
+												<th>Last 4 Digits</th>
+												<th>Expiry Date</th>
+												<th>Default Card</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody class="gradeX">
+											<tr ng-repeat="card in addcustomerCtrl.customer.payment_info">
+												<td>{{card.name_card}}</td>
+												<td>{{card.last_digits}}</td>
+												<td>{{card.expiry_date | date:'medium'}}</td>
+												<td>{{card.is_default}}</td>
+												<td><a href="" data-toggle="tooltip" title="Remove Card" ng-click="addcustomerCtrl.removeCard(card)"><i class="fa fa-close text-danger" aria-hidden="true"></i></a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="form-group">
+								<div id="required">
+									<label class="col-md-2 control-label">Card Name</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control" id="name_card" ng-model="addcustomerCtrl.currentCard.name_card">
+									</div>
+								</div>
+								<label class="col-md-2 control-label">Card Number</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="last_digits" ng-model="addcustomerCtrl.currentCard.last_digits">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">Expiry Date</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="expiry_date" ng-model="addcustomerCtrl.currentCard.expiry_date">
+								</div>
+								<label class="col-md-2 control-label">Default Card</label>
+								<div class="col-md-3">
+									<select class="form-control" id="is_default" ng-model="addcustomerCtrl.currentCard.is_default">
+										<option value="true">Yes</option>
+										<option value="false">No</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<a href="" data-toggle="tooltip" title="Add Card" ng-click="addcustomerCtrl.addCard()"><i class="fa fa-plus fa-2x cust_primary" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+					</section>-->
+					<div class="form-group">
+						<div class="text-center">
+							<button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</button>
+							<button type="submit" class="mb-xs mt-xs mr-xs btn btn-danger" ng-click="addcustomerCtrl.cancel()">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

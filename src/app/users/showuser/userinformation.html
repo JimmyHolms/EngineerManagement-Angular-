@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <button type="button" class="close job_header" ng-click="userlistCtrl.cancel()">&times;</button>
+    <h4 class="job_header">User Information</h4>
+</div>
+<div class="modal-body" id="modal-body">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">User Details</h2>
+        </header>
+        <div class="panel-body">
+            <div class="form-group" ng-style="border">
+                <div class="col-md-4 text-center thumb_imgdiv" >
+                    <img width="100%" src={{userlistCtrl.setCorrectImagePath()}} id="user_photo" onerror="this.src='/assets/images/avatar.jpg';"/>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Full Name:</label>
+                        <span class="col-md-7 control-label ng-binding">{{userlistCtrl.current_user.full_name}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Current Status:</label>
+                        <span class="col-md-7 control-label ng-binding">{{userlistCtrl.setCurrentStatus()}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Role:</label>
+                        <span class="col-md-7 control-label ng-binding">{{userlistCtrl.showRole(userlistCtrl.current_user)}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Updated Date:</label>
+                        <span class="col-md-7 control-label ng-binding">{{userlistCtrl.current_user.updated_datetime | date:'medium'}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Created Date:</label>
+                        <span class="col-md-7 control-label ng-binding">{{userlistCtrl.current_user.created_datetime | date:'medium'}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Email:</label>
+                        <span class="col-md-7 control-label ng-binding">{{userlistCtrl.current_user.email}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Mobile Number:</label>
+                        <span class="col-md-7 control-label ng-binding">{{userlistCtrl.current_user.mobile_number}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-style="border">
+                <label class="col-md-2 control-label">Address:</label>
+                <span class="col-md-9 control-label ng-binding">{{userlistCtrl.current_user.address_detail}}</span>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="userlistCtrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="userlistCtrl.cancel()">Cancel</button>
+</div>

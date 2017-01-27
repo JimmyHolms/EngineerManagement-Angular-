@@ -1,0 +1,14 @@
+.customheader_voucher th{border-top:0 !important }
+.mr-zero{margin: 0}
+.report-title-table {width: 58%;}
+table.report-title-table1 {width: 25%;}
+.report-table thead th {font-size: 14px;font-weight: 500;}
+.report-table td {font-size: 15px;}
+.datepicker.dropdown-menu{z-index: 50000 !important;}
+.m-l{margin-left: 30px;}
+.m-r{margin-right: 30px;}
+.m-t{margin-bottom: 20px}
+.m-b{margin-bottom: 20px}
+.bg-gry {background: #dadada;margin-top: 10px;border-radius: 5px;}
+.bg-gry input{background: #fff !important;border-radius: 0;border: 0;}
+.bg-gry h6 {text-transform: uppercase;color: #695f5f;font-size: 12px;font-weight: 700;}

@@ -1,0 +1,141 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2>Edit User</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Users</span></li>
+					<li><span>Edit</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+		<div class="row">
+			<div class="col-lg-12">
+				<form name="form" class="form" id="form" ng-submit="edituserCtrl.update(form)" novalidate>
+					<section class="panel">
+						<div class="alert alert-success " id="success-alert"><strong>Success!</strong> User Updated Successfully.</div>
+						<div class="alert alert-danger " id="failure-alert"><strong>Failure!</strong> User Update Failed.</div>
+						<div class="alert alert-info " id="cancel-alert"><strong>Cancelled!</strong> User Details Reset to Default Values.</div>
+						<div class="alert alert-danger " id="wrong-userid"><strong>Failure!</strong> Wrong User Id.</div>
+						<div class="alert alert-danger" id="failure-image-alert"><strong>Failure!</strong> Image Upload Failed.</div>
+						<div class="alert alert-success " id="success-forgotpassword-alert"><strong>Success!</strong> An Email has been sent containing information to reset password.</div>
+						<div class="alert alert-danger " id="failed-forgotpassword-alert"><strong>Failure!</strong> An Email has not been sent.</div>
+						<header class="panel-heading">
+							<div class="panel-actions">
+								<!--<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+              <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>-->
+							</div>
+							<h2 class="panel-title">User Details</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="col-sm-3">
+									<div class="thumbnail">
+										<img src={{edituserCtrl.user.image_path}} id="user_photo" onerror="this.src='/assets/images/avatar.jpg';" />
+									</div>
+									<div class="text-center customimage_divinput">
+										<span class="btn btn-primary">Choose Image</span>
+										<input type="file" class="btn btn-primary" id="photo_input" name="upload_image" accept="image/*"></span>
+										<!--<span class="btn btn-info" ng-show="$flow.files.length" flow-btn>Change</span>
+										<span class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</span>-->
+									</div>
+								</div>
+								<div class="col-sm-9">
+									<div class="form-group ">
+										<label class="col-md-3 control-label " for="inputDefault ">User Type</label>
+										<div class="col-md-6 ">
+											<select class="form-control " ng-model="edituserCtrl.selectedUserType" ng-options="type.name for type in edituserCtrl.userTypes
+							| orderBy: 'name' track by type.value "></select>
+										</div>
+									</div>
+									<div class="form-group" ng-class="{ 'has-success': form.name.$valid && edituserCtrl.submitted,
+                                                'has-error': form.name.$invalid && edituserCtrl.submitted}">
+										<label class="col-md-3 control-label " for="inputDefault ">Full Name</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control" name="name" ng-model="edituserCtrl.user.full_name" id="inputDefault" required>
+										</div>
+									</div>
+									<div class="form-group ">
+										<label class="col-md-3 control-label " for="inputDefault ">Email</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="email" ng-value="edituserCtrl.user.email " ng-disabled="true" id="inputDefault">
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.mobile_number.$valid && edituserCtrl.submitted,
+                                                'has-error': form.mobile_number.$invalid && edituserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Mobile Number</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="mobile_number" ng-model="edituserCtrl.user.mobile_number " id="inputDefault"
+												required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.street.$valid && edituserCtrl.submitted,
+                                                'has-error': form.street.$invalid && edituserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Street</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " ng-model="edituserCtrl.user.address.street_address" name="street" id="inputDefault "
+												required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.city.$valid && edituserCtrl.submitted,
+                                                'has-error': form.city.$invalid && edituserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">City</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " ng-model="edituserCtrl.user.address.city" name="city" id="inputDefault " required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.state.$valid && edituserCtrl.submitted,
+                                                'has-error': form.state.$invalid && edituserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">State</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " ng-model="edituserCtrl.user.address.state" name="state" id="inputDefault " required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.country.$valid && edituserCtrl.submitted,
+                                                'has-error': form.country.$invalid && edituserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Country</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="country" ng-model="edituserCtrl.user.address.country" id="inputDefault "
+												required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.zip_code.$valid && edituserCtrl.submitted,
+                                                'has-error': form.zip_code.$invalid && edituserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Zip Code</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="zip_code" ng-model="edituserCtrl.user.address.zip_code" id="inputDefault "
+												required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.landline_number.$valid && edituserCtrl.submitted,
+                                                'has-error': form.landline_number.$invalid && edituserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Landline Number</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="landline_number" ng-model="edituserCtrl.user.address.phone_number" id="inputDefault "
+												required>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<div class="form-group text-center">
+						<div class="col-sm-3">
+							<button type="button" ng-click="edituserCtrl.forgotPassword()" class="forgot_btn mb-xs mt-xs mr-xs btn btn btn-warning">Forgot Password</button>
+						</div>
+						<div class="text-center col-sm-9">
+							<button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary ">&nbsp;&nbsp;&nbsp;Update&nbsp;&nbsp;&nbsp;</button>
+							<button type="button" ng-click="edituserCtrl.cancel()" class="mb-xs mt-xs mr-xs btn btn-danger ">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

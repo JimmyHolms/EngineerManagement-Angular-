@@ -1,0 +1,73 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2> Paid Invoices</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Invoices</span></li>
+					<li><span>Paid</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+		<div class="row" ng-controller="paidinvoicesComponent">
+			<div class="col-lg-12">
+				<section class="panel">
+					<header class="panel-heading">
+						<div class="panel-actions">
+							<!--<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+              <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>-->
+						</div>
+						<h2 class="panel-title"> Paid Invoices</h2>
+					</header>
+					<div class="panel-body">
+						<form action="">
+
+							<!-- Active Invoices -->
+							<section class="panel">
+								<div class="panel-body">
+									<div class="form-group">
+										<div class="table-responsive">
+											<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+												<thead>
+													<tr>
+														<th>Job Title</th>
+														<th>Created datetime</th>
+														<th>Updated datetime</th>
+														<th>Status</th>
+														<th>Total</th>
+														<th>Charge Type</th>
+														<th>Actions</th>
+													</tr>
+												</thead>
+												<tbody class="gradeX" ng-repeat="x in Profile | orderBy: '-created_datetime'">
+													<tr>
+														<td>{{x.job_title }}</td>
+														<td>{{x.created_datetime | date:'medium' }}</td>
+														<td>{{x.updated_datetime | date:'medium'}}</td>
+														<td>{{x.status}}</td>
+														<td>{{x.total }}</td>
+														<td>{{x.charge_type}}</td>
+														<td class="actions">
+															<a href="" data-toggle="tooltip" title="Show Invoice Details" ng-click="paidinvoicesCtrl.setCurrentJob(x)"><i class="fa fa-server fa-2x" aria-hidden="true"></i></a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</div>
+							</section>
+						</form>
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>
+</div>

@@ -1,0 +1,147 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2>Customer Profile</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Customer Profile</span></li>
+					<li><span>Profile</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+		<div class="row">
+			<div class="col-lg-12">
+				<section class="panel">
+					<header class="panel-heading">
+						<div class="panel-actions">
+							<!--<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+              <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>-->
+						</div>
+						<h2 class="panel-title"> Customer Profile</h2>
+					</header>
+					<div class="panel-body">
+						<div class="col-xs-4">
+							<img id="customer_photo" width="204" height="306" class="rounded mx-auto d-block">
+						</div>
+						<form action="">
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="inputDefault">Full Name</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="inputDefault" ng-model='Profile.full_name ' name='full_name' readonly>
+								</div>
+								<label class="col-md-2 control-label">Email</label>
+								<div class="col-md-8">
+									<input type="text" ng-model='Profile.email' id="email" name='email' readonly class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+										aria-invalid="false">
+								</div>
+								<label class="col-md-2 control-label" for="inputDefault">Company Name</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="inputDefault" readonly ng-model='Profile.company_name ' name='company_name'>
+								</div>
+								<label class="col-md-2 control-label">Position</label>
+								<div class="col-md-8">
+									<input type="text" id="inputDefault" ng-model='Profile.designation ' readonly name='designation' class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+										aria-invalid="false">
+								</div>
+
+								<label class="col-md-2 control-label" for="inputDefault">Mobile Number</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="inputDefault" readonly ng-model='Profile.mobile_number ' name='mobile_number'>
+								</div>
+							</div>
+
+
+							<!-- Addresses Panel -->
+							<section class="panel">
+								<header class="panel-heading">
+									<h2 id="addresses" class="panel-title">Addresses</h2>
+								</header>
+								<div class="panel-body" ng-controller="customerprofileComponent">
+									<div class="form-group">
+										<div class="table-responsive">
+											<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+												<thead>
+													<tr>
+														<th>Site Name</th>
+														<th>Street</th>
+														<th>City</th>
+														<th>State</th>
+														<th>Country</th>
+														<th>Post Code</th>
+														<th>Landline Number</th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody class="gradeX">
+													<tr ng-repeat="x in Profile.addresses">
+														<td>{{x.site_name }}</td>
+														<td>{{x.street_address}}</td>
+														<td>{{x.city}}</td>
+														<td>{{x.state}}</td>
+														<td>{{x.country }}</td>
+														<td>{{x.zip_code}}</td>
+														<td>{{x.phone_number}}</td>
+
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</div>
+							</section>
+
+
+							<!-- Payment Panel -->
+							<section class="panel">
+								<header class="panel-heading">
+									<h2 id="addresses" class="panel-title">Credit Cards Details</h2>
+								</header>
+								<div class="panel-body" ng-controller="customerprofileComponent">
+									<div class="form-group">
+										<div class="table-responsive">
+											<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+												<thead>
+													<tr>
+														<th>Card Type</th>
+														<th>Card last_digit</th>
+														<th>Expiry Date</th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody class="gradeX">
+													<tr ng-repeat="x in Profile.payment_info.cards">
+														<td>{{x.brand}}</td>
+														<td>{{x.last_digits}}</td>
+														<td>{{x.expiry_date}}</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</div>
+							</section>
+
+
+
+
+
+							<div class="text-center">
+								<a class="mb-xs mt-xs mr-xs btn btn-primary" href="/updatecustomerprofile">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
+								<button ng-click="customerprofileCtrl.cancel()" class="mb-xs mt-xs mr-xs btn btn-danger" type="submit">Cancel</button>
+							</div>
+
+						</form>
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>
+</div>

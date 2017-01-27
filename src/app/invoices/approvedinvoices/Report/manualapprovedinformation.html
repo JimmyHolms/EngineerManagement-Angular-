@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <button type="button" class="close job_header" ng-click="approvedinvoicesCtrl.cancel()">&times;</button>
+  <h4 class="job_header">Approved Invoice Information</h4>
+</div>
+<div class="modal-body" id="modal-body">
+  <section class="panel">
+    <header class="panel-heading">
+      <h2 class="panel-title">Collect Manual Payment</h2>
+    </header>
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="inputDefault">Job Title:</label>
+        <span class="col-md-6 control-label ng-binding">{{approvedinvoicesCtrl.JobDetailsManual.invoice.job_title}}</span>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="inputDefault">Invoice Total:</label>
+        <span class="col-md-6 control-label ng-binding">{{approvedinvoicesCtrl.JobDetailsManual.invoice.total}}</span>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="inputDefault">Charge Type:</label>
+        <span class="col-md-6 control-label ng-binding">{{approvedinvoicesCtrl.manualpayment.charge_type}}</span>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="inputDefault">Description:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="inputDefault" ng-model='approvedinvoicesCtrl.manualpayment.charge_description'
+            name='charge_description'>
+        </div>
+        <span class="alert-danger">{{approvedinvoicesCtrl.valid}}</span>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="inputDefault">Transaction ID:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="inputDefault" ng-model='approvedinvoicesCtrl.manualpayment.transaction_id' name='transaction_id'>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="approvedinvoicesCtrl.CollectManualpayment()">Collect Payment</button>
+  <button class="btn btn-warning" type="button" ng-click="approvedinvoicesCtrl.cancel()">Cancel</button>
+</div>

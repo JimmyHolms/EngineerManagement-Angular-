@@ -1,0 +1,218 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2>Edit Profile</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Update </span></li>
+					<li><span>Customer</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+		<div class="row"  ng-controller="updatecustomerprofileComponent">
+			<div class="col-lg-12">
+				<section class="panel">
+					<header class="panel-heading">
+						<div class="panel-actions">
+							<!--<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+              <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>-->
+						</div>
+						<h2 class="panel-title"> Update Profile</h2>
+					</header>
+					<div class="panel-body">
+						<div class="alert alert-success" id="Update-alert"><strong>Success!</strong> Profile Updated Successfully.</div>
+						<div class="alert alert-success" id="CardUpdate-alert"><strong>Success!</strong> Credit Card Information Add Successfully.</div>
+				<div class="alert alert-danger" id="failure-alert"><strong>Failure!</strong>Failed to update profile</div>
+					<div class="alert alert-danger" id="cardfailure-alert"><strong>Failure!</strong>Failed To Add Credit Card</div>
+	<div class="alert alert-success" id="success-alert"><strong>Success!</strong>Image Uploaded Successfully</div>
+	
+<!--	<input type="file" id="file" name="file"/>
+<button ng-click="add()">Add</button>
+					<input type="file"  name="upload_image" id="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+				-->
+			
+<div  class="col-xs-4">									
+<img  width="204"  height="306" class="rounded mx-auto d-block"  id="customer_photo" >
+					<form id="data" method="post" enctype="multipart/form-data">
+<input class="btn btn-outline btn-default" type="file" ng-model="files" name="upload_image" id="file" onchange="$('form#data').submit()"/>
+ 
+</form>
+</div>
+	 <form ng-submit="updateProfile()" >
+             	<form action="">
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="inputDefault">Full Name</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="inputDefault"  ng-model='Profile.full_name ' name='full_name' >
+								</div>
+															
+								<label class="col-md-2 control-label" for="inputDefault">Company Name</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="inputDefault"  ng-model='Profile.company_name ' name='company_name'>
+								</div>
+								<label class="col-md-2 control-label">Position</label>
+								<div class="col-md-8">
+									<input type="text" id="inputDefault"  ng-model='Profile.designation '  name='designation' class="form-control ng-pristine ng-untouched ng-valid ng-empty" aria-invalid="false">
+								</div>
+							
+								<label class="col-md-2 control-label" for="inputDefault">Mobile Number</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="inputDefault"   ng-model='Profile.mobile_number ' name='mobile_number'>
+								</div>
+							</div>
+
+						
+				<!-- Addresses Panel -->
+				<section class="panel">
+						<header class="panel-heading">
+							<h2 id="addresses" class="panel-title">Addresses</h2>
+						</header>
+						<div class="panel-body" >
+							<div class="form-group">
+								<div class="table-responsive">
+									<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+										<thead>
+											<tr>
+												<th>Site Name</th>
+											    <th>Street</th>
+												 <th>City</th>
+												  <th>State</th>
+												   <th>Country</th>
+												    <th>Post Code</th>
+													 <th>Landline Number</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody class="gradeX">
+											<tr  ng-repeat="x in Profile.addresses">
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='x.site_name ' name='site_name'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='x.street_address ' name='street_address'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='x.city ' name='city'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='x.state ' name='state'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='x.country ' name='country'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='x.zip_code ' name='zip_code'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='x.phone_number ' name='phone_number'></td>
+												<td><a href="" data-toggle="tooltip" title="Remove Address" ng-click="removeAddress(x)"><i class="fa fa-close text-danger" aria-hidden="true"></i></a></td>
+												
+													</tr>
+											<tr ng-repeat="lines in array">
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='form.site_name' name='site_name'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='form.street_address' name='street_address'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='form.city' name='city'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='form.state' name='state'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='form.country' name='country'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='form.zip_code' name='zip_code'></td>
+												<td><input type="text" class="form-control" id="inputDefault"  ng-model='form.phone_number' name='phone_number'></td>
+													
+											</tr>
+										
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="col-md-2">
+									<a href="" data-toggle="tooltip" title="Add Address" ng-click="addRow()"><i class="fa fa-plus fa-2x cust_primary" aria-hidden="true"></i></a>
+									
+								</div>
+						</div>
+					</section>
+					
+					<!-- Payment Panel -->
+						<section class="panel">
+						<header class="panel-heading">
+							<h2 id="addresses" class="panel-title">Credit Cards Details</h2>
+						</header>
+						<div class="panel-body"  ng-controller="customerprofileComponent">
+							<div class="form-group">
+								<div class="table-responsive">
+									<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+										<thead>
+											<tr>
+												<th>Card Type</th>
+											    <th>Card last_digit</th>
+												 <th>Expiry Date</th>
+												  
+												   
+												<th></th>
+											</tr>
+										</thead>
+										<tbody class="gradeX">
+											<tr  ng-repeat="x in Profile.payment_info.cards">
+												<td>{{x.brand }}</td>
+												<td>{{x.last_digits}}</td>
+												<td>{{x.expiry_date}}</td>
+											
+											
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							
+						</div>
+					</section>
+						
+
+					<!-- Payment Panel -->
+						<section class="panel">
+						<header class="panel-heading">
+							<h2 id="addresses" class="panel-title">Add Credit Card</h2>
+						</header>
+						<div class="panel-body" >
+							<div class="form-group">
+								<div class="table-responsive">
+									<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+										<thead>
+											<tr>
+												<th>Card Number</th>
+											    <th>Expiry Month</th>
+												 <th>Expiry Year</th>
+												  <th>CVC</th>
+												   
+												<th></th>
+											</tr>
+										</thead>
+										<tbody class="gradeX">
+										
+											<tr>
+												<td><input type="number" class="form-control" id="inputDefault"  ng-model='paymentrow.number ' name='number' min="1"></td>
+												<td><input type="number" class="form-control" id="inputDefault"  ng-model='paymentrow.exp_month ' name='exp_month'  min="1" max="12"></td>
+												<td><input type="number" class="form-control" id="inputDefault"  ng-model='paymentrow.exp_year '  min="2016" max="2050" name='exp_year'></td>
+												<td><input type="number" class="form-control" id="inputDefault"  ng-model='paymentrow.cvc 'min="1" name='cvc'></td>
+											<td>	
+													<a   class="mb-xs mt-xs mr-xs btn btn-primary" ng-click="AddCard()">Add Card </a >
+							
+									
+								</td>
+												</tr>
+										</tbody>	
+									</table>
+								</div>
+							</div>
+								
+										</div>
+						
+					</section>
+						
+						
+							<div class="text-center" > 
+                <button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">&nbsp;&nbsp;&nbsp;Update Profile&nbsp;&nbsp;&nbsp;</button>
+				<a  class="mb-xs mt-xs mr-xs btn btn-danger" href="/customerprofile">Cancel </a >
+					</div>
+            </form>
+			
+						
+					</div>				
+				</section>
+			</div>
+		</div>
+	</section>
+</div>
+

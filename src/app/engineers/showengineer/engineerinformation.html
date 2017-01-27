@@ -1,0 +1,107 @@
+<div class="modal-header">
+    <button type="button" class="close job_header" ng-click="engineerCtrl.cancel()">&times;</button>
+    <h4 class="job_header">Engineer Information</h4>
+</div>
+<div class="modal-body" id="modal-body">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Engineer Details</h2>
+        </header>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-4 text-center thumb_imgdiv">
+                    <img width="100%" src={{engineerCtrl.setCorrectImagePath()}} onerror="this.src='/assets/images/avatar.jpg';" />
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Full Name:</label>
+                        <span class="col-md-7 control-label ng-binding">{{engineerCtrl.current_engineer.full_name}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Current Status:</label>
+                        <span class="col-md-7 control-label ng-binding">{{engineerCtrl.setCurrentStatus()}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Created Date:</label>
+                        <span class="col-md-7 control-label ng-binding">{{engineerCtrl.current_engineer.created_datetime | date:'medium'}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Updated Date:</label>
+                        <span class="col-md-7 control-label ng-binding">{{engineerCtrl.current_engineer.updated_datetime | date:'medium'}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Email:</label>
+                        <span class="col-md-7 control-label ng-binding">{{engineerCtrl.current_engineer.email}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Mobile Number:</label>
+                        <span class="col-md-7 control-label ng-binding">{{engineerCtrl.current_engineer.mobile_number}}</span>
+                    </div>
+                    <div class="form-group" ng-style="border">
+                        <label class="col-md-4 control-label">Rating:</label>
+                        <span class="col-md-7 engineer_rating" ng-model="engineerCtrl.current_engineer.average_rating" uib-rating max="5" data-readonly="true"
+                            aria-labelledby="default-rating"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-style="border">
+                <label class="col-md-3 control-label">Company Name:</label>
+                <span class="col-md-3 control-label ng-binding">{{engineerCtrl.current_engineer.company_name}}</span>
+                <label class="col-md-2 control-label">Designation:</label>
+                <span class="col-md-3 control-label ng-binding">{{engineerCtrl.current_engineer.designation}}</span>
+            </div>
+            <div class="form-group" ng-style="border">
+                <label class="col-md-2 control-label">Address:</label>
+                <span class="col-md-9 control-label ng-binding">{{engineerCtrl.current_engineer.addressdetail}}</span>
+            </div>
+            <div class="form-group" ng-style="border">
+                <uib-accordion close-others="oneAtATime">
+                    <div uib-accordion-group class="panel-default" is-open="status.open">
+                        <uib-accordion-heading>
+                            Skills <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                        </uib-accordion-heading>
+                        <div class="form-group" ng-style="border" ng-repeat="skill in engineerCtrl.current_engineer.skills">
+                            <label class="col-md-4 control-label">- {{skill.skill_name}}</label>
+                            <span class="col-md-8 control-label ng-binding">{{engineerCtrl.getsubskill(skill.child_skills)}}</span>
+                        </div>
+                    </div>
+                </uib-accordion>
+            </div>
+        </div>
+    </section>
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Certifications</h2>
+        </header>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Certification Date</th>
+                        <th>Expiry Date</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody class="gradeX">
+                    <tr ng-repeat="certification in engineerCtrl.current_engineer.certifications">
+                        <td>{{certification.title}}</td>
+                        <td>{{certification.certification_date | date:'medium'}}</td>
+                        <td>{{certification.expiry_date | date:'medium'}}</td>
+                        <td>
+                            <ul ng-if="certification.image_path!=null" class="enlarge">
+                                <li><img src={{engineerCtrl.setCorrectCertificatePath(certification.image_path)}} class="certificate_smallimage"
+                                    /><span><img class="certificate_bigimage" src={{engineerCtrl.setCorrectCertificatePath(certification.image_path)}} /><br />{{certification.title}}</span></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="engineerCtrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="engineerCtrl.cancel()">Cancel</button>
+</div>

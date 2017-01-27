@@ -1,0 +1,13 @@
+.customimage_divinput
+{
+    position:relative;
+}
+.customimage_divinput input[type="file"] {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+}

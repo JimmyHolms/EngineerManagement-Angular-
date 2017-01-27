@@ -1,0 +1,269 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2>Edit Job</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Jobs</span></li>
+					<li><span>Edit</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+		<div class="modal-backdrop fade in" id="loading_div" style="display:none;">
+			<div class="loader"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<form name="form" id="form" ng-submit="editjobCtrl.update()" novalidate>
+					<section class="panel">
+						<div class="alert alert-success" id="success-alert"><strong>Success!</strong> Job Updated Successfully.</div>
+						<div class="alert alert-danger" id="failure-alert"><strong>Failure!</strong> Job Update Failed.</div>
+						<div class="alert alert-info" id="cancel-alert"><strong>Cancelled!</strong> Job Details Reset to Default Values.</div>
+						<div class="alert alert-warning" id="validation-alert"><strong>Missing Info!</strong> Job Details Requires More Information.</div>
+						<div class="alert alert-info" id="someimagefailed-alert"><strong>Failure!</strong> Some Image File Uploaded Failed.</div>
+						<header class="panel-heading">
+							<div class="panel-actions">
+								<!--<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+              <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>-->
+							</div>
+							<h2 class="panel-title">Job Details</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="customer">Customer</label>
+								<div class="col-md-6">
+									<select class="form-control" name="customer" id="customer" ng-model="editjobCtrl.selectedCustomer" ng-options="customer.full_name for customer in editjobCtrl.atlasCustomers | orderBy:'full_name' track by customer.user_id"
+										ng-disabled="true" required></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="title">Title</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="title" id="title" ng-model="editjobCtrl.job.title">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="category">Category</label>
+								<div class="col-md-6">
+									<select class="form-control" name="category" id="category" ng-model="editjobCtrl.selectedParentCategory" ng-options="category.category_name for category in editjobCtrl.jobCategories.categories | orderBy:'category_name' track by category.category_name"
+										ng-change="editjobCtrl.changeChildCategory()"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="subcategory">Sub-Category</label>
+								<div class="col-md-6">
+									<select class="form-control" name="subcategory" id="subcategory" ng-model="editjobCtrl.job.category_l2" ng-options="option for option in editjobCtrl.selectedParentCategory.child_categories | orderBy"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="schedule">Schedule</label>
+								<div class="col-md-6">
+									<select class="form-control" name="schedule" id="schedule" ng-model="editjobCtrl.selectedSchedule" ng-options="schedule.schedule_name for schedule in editjobCtrl.jobSchedulingOptions.schedules track by schedule.schedule_name"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="description">Description</label>
+								<div class="col-md-6">
+									<textarea type="text" class="form-control" name="description" id="description" ng-model="editjobCtrl.job.description"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="address">Customer Addresses</label>
+								<div class="col-md-6">
+									<select class="form-control" name="address" id="address" ng-model="editjobCtrl.job.address" ng-options="address.site_name for address in editjobCtrl.selectedCustomer.addresses | orderBy:'site_name'"
+										required></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="sitename">Site Name</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="sitename" id="sitename" ng-model="editjobCtrl.job.address.site_name" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="street">Street</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="street" id="street" ng-model="editjobCtrl.job.address.street_address">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="city">City</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="city" id="city" ng-model="editjobCtrl.job.address.city">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="state">State</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="state" id="state" ng-model="editjobCtrl.job.address.state">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="country">Country</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="country" id="country" ng-model="editjobCtrl.job.address.country">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="postcode">Post Code</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="postcode" id="postcode" ng-model="editjobCtrl.job.address.zip_code">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="landline">Landline Number</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="landline" id="landline" ng-model="editjobCtrl.job.address.phone_number">
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="panel">
+						<header class="panel-heading">
+							<div class="panel-actions">
+							</div>
+							<h2 class="panel-title">Job Images</h2>
+						</header>
+						<div class="panel-body">
+							<div flow-init flow-files-submitted="$flow.upload()" flow-name="editjobCtrl.flowname" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+								<div class="drop" flow-drop ng-class="dropClass">
+									<span class="btn btn-primary" flow-btn>Upload Image</span>
+									<b>OR</b> Drag And Drop your images here
+								</div>
+								<br/>
+								<div>
+									<div ng-repeat="file in editjobCtrl.flowname.files" class="gallery-box">
+										<span class="title">{{file.name}}</span>
+										<div class="multi_thumbnail" ng-show="editjobCtrl.flowname.files.length">
+											<img flow-img="file" />
+										</div>
+										<div class="progress progress-striped" style="margin-bottom:2px" ng-class="{active: file.isUploading()}">
+											<div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100"
+												ng-style="{width: (file.progress() * 100) + '%'}">
+												<span class="sr-only">{{file.progress()}}% Complete</span>
+											</div>
+										</div>
+										<div class="btn-group">
+											<a class="btn btn-xs btn-danger" ng-click="file.cancel()">Remove</a>
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="panel">
+						<header class="panel-heading">
+							<div class="panel-actions">
+							</div>
+							<h2 class="panel-title">Job Work Items</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Cost</th>
+											<th>Date Time</th>
+											<th>Image</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody class="gradeX">
+										<tr ng-repeat="workitem in editjobCtrl.job.work_items">
+											<td>{{workitem.name}}</td>
+											<td>{{workitem.cost}}</td>
+											<td>{{workitem.datetime | date:'medium'}}</td>
+											<td>
+												<ul ng-if="workitem.image_path!=null" class="enlarge">
+													<li><img src={{editjobCtrl.setRightImagePath(workitem.image_path)}} class="certificate_smallimage" /><span><img class="certificate_bigimage" src={{editjobCtrl.setRightImagePath(workitem.image_path)}} /><br />{{workitem.name}}</span></li>
+												</ul>
+											</td>
+											<td>
+												<a href="" data-toggle="tooltip" title="Remove workitem" ng-click="editjobCtrl.removeWorkItem($index)"><i class="fa fa-close text-danger" aria-hidden="true"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="form-group">
+								<div class="col-md-2">
+									<div class="thumbnail img_certificate_div">
+										<img src="/assets/images/no_image.png" id="workitem_image" />
+									</div>
+									<div class="text-center customimage_divinput">
+										<span class="btn btn-primary">Choose Image</span>
+										<input type="file" class="btn btn-primary" id="workitem_input" name="upload_image" accept="image/*">
+									</div>
+								</div>
+								<div class="col-sm-10">
+									<div class="form-group">
+										<div id="required">
+											<label class="col-md-2 control-label">Name</label>
+											<div class="col-md-4">
+												<input type="text" class="form-control" ng-model="editjobCtrl.current_workitem.name">
+											</div>
+										</div>
+										<div class="col-md-2">
+											<a href="" data-toggle="tooltip" title="Add Work Item" ng-click="editjobCtrl.addWorkItem()"><i class="fa fa-plus fa-2x cust_primary" aria-hidden="true"></i></a>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">Cost</label>
+										<div class="col-md-4">
+											<input type="text" class="form-control" ng-model="editjobCtrl.current_workitem.cost">
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="panel">
+						<header class="panel-heading">
+							<div class="panel-actions">
+							</div>
+							<h2 class="panel-title">Job Sign Off</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="col-md-2 ">
+									<div class="signoffdiv">
+										<img src="/assets/images/no_image.png" onerror="this.src='/assets/images/no_image.png';" />
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="postcode">Title</label>
+										<span class="col-md-5"> {{editjobCtrl.job.signoff.title}}</span>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="postcode">Position</label>
+										<span class="col-md-5">{{editjobCtrl.job.signof.fdesignation}}</span>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="postcode">Date Time</label>
+										<span class="col-md-5">{{editjobCtrl.job.signoff.datetime}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<div class="form-group">
+						<div class="text-center">
+							<button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">&nbsp;&nbsp;&nbsp;Update&nbsp;&nbsp;&nbsp;</button>
+							<button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" ng-click="editjobCtrl.cancel()">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

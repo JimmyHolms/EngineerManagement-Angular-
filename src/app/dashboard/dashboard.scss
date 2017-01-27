@@ -1,0 +1,36 @@
+label.schedule-label{
+    text-align: center!important;
+}
+div.modal-header
+{
+    background-color:black;
+    padding-bottom: 0px;
+}
+button.close
+{
+    opacity: 1;
+}
+.job_header
+{
+    color: white;
+    margin-top: 0px;
+}
+#carousel-image
+{
+    margin:auto!important;
+    width:450px;
+}
+h3.modal-title
+{
+    color:white;
+}
+.custom_carousel
+{
+    margin-left:auto;
+    margin-right:auto;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img{
+    width:300px;
+    max-height: 300px;
+}

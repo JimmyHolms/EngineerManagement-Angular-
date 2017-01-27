@@ -1,0 +1,31 @@
+$icon-font-path: '/assets/fonts/bootstrap/';
+@import '~bootstrap-sass/vendor/assets/stylesheets/bootstrap';
+$fa-font-path: '/assets/fonts/font-awesome/';
+@import '~font-awesome/scss/font-awesome';
+
+// @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,900|Roboto:300,500,700,900);
+
+/**
+ * App-wide Styles
+ */
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+// Component styles are injected through gulp
+/* inject:scss */
+@import 'app/main/main';
+@import 'app/admin/admin';
+@import 'app/customers/addcustomer/addcustomer';
+@import 'app/dashboard/dashboard';
+@import 'app/engineers/addengineer/addengineer';
+@import 'app/engineers/engineerlist/engineerlist';
+@import 'app/jobs/addjob/addjob';
+@import 'app/jobs/editjob/editjob';
+@import 'app/users/adduser/adduser';
+@import 'app/users/edituser/edituser';
+/* endinject */

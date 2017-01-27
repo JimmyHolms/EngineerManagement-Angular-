@@ -1,0 +1,108 @@
+<div class="modal-header">
+    <button type="button" class="close job_header" ng-click="customerlistCtrl.cancel()">&times;</button>
+    <h4 class="job_header">Customer Information</h4>
+</div>
+<div class="modal-body" id="modal-body">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Customer Details</h2>
+        </header>
+        <div class="panel-body">
+            <div class="form-group" ng-style="border">
+                <div class="col-md-4 text-center thumb_imgdiv">
+                    <img width="100%" src={{customerlistCtrl.setCorrectImagePath()}} onerror="this.src='/assets/images/avatar.jpg';" />
+</div>
+<div class="col-md-8">
+    <div class="form-group" ng-style="border">
+        <label class="col-md-4 control-label">Full Name:</label>
+        <span class="col-md-7 control-label ng-binding">{{customerlistCtrl.current_customer.full_name}}</span>
+    </div>
+    <div class="form-group" ng-style="border">
+        <label class="col-md-4 control-label">Current Status:</label>
+        <span class="col-md-7 control-label ng-binding">{{customerlistCtrl.setCurrentStatus()}}</span>
+    </div>
+    <div class="form-group" ng-style="border">
+        <label class="col-md-4 control-label">Created Date:</label>
+        <span class="col-md-7 control-label ng-binding">{{customerlistCtrl.current_customer.created_datetime | date:'medium'}}</span>
+    </div>
+    <div class="form-group" ng-style="border">
+        <label class="col-md-4 control-label">Updated Date:</label>
+        <span class="col-md-7 control-label ng-binding">{{customerlistCtrl.current_customer.updated_datetime | date:'medium'}}</span>
+    </div>
+    <div class="form-group" ng-style="border">
+        <label class="col-md-4 control-label">Email:</label>
+        <span class="col-md-7 control-label ng-binding">{{customerlistCtrl.current_customer.email}}</span>
+    </div>
+    <div class="form-group" ng-style="border">
+        <label class="col-md-4 control-label">Mobile Number:</label>
+        <span class="col-md-7 control-label ng-binding">{{customerlistCtrl.current_customer.mobile_number}}</span>
+    </div>
+</div>
+</div>
+<div class="form-group" ng-style="border">
+    <label class="col-md-3 control-label">Company Name:</label>
+    <span class="col-md-3 control-label ng-binding">{{customerlistCtrl.current_customer.company_name}}</span>
+    <label class="col-md-3 control-label">Designation:</label>
+    <span class="col-md-3 control-label ng-binding">{{customerlistCtrl.current_customer.designation}}</span>
+</div>
+<div class="form-group" ng-style="border">
+    <label class="col-md-2 control-label">Address:</label>
+    <span class="col-md-9 control-label ng-binding">{{customerlistCtrl.current_customer.addressdetail}}</span>
+</div>
+</div>
+</section>
+<section class="panel">
+    <header class="panel-heading">
+        <h2 class="panel-title">Payment Info</h2>
+    </header>
+    <div class="panel-body">
+        <div class="form-group" ng-style="border">
+            <label class="col-md-3 control-label">Card:</label>
+            <span class="col-md-3 control-label ng-binding">{{customerlistCtrl.current_customer.payment_info[0].name_card}}</span>
+            <label class="col-md-3 control-label">Last digits:</label>
+            <span class="col-md-3 control-label ng-binding">{{customerlistCtrl.current_customer.payment_info[0].last_digits}}</span>
+        </div>
+        <div class="form-group" ng-style="border">
+            <label class="col-md-3 control-label">Expired Date:</label>
+            <span class="col-md-3 control-label ng-binding">{{customerlistCtrl.current_customer.payment_info[0].expiry_date}}</span>
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <header class="panel-heading">
+        <h2 id="addresses" class="panel-title">Credit Cards Details</h2>
+    </header>
+    <div class="panel-body" ng-controller="CustomerListComponent">
+        <div class="form-group">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+                    <thead>
+                        <tr>
+                            <th>Card Type</th>
+                            <th>Card last_digit</th>
+                            <th>Expiry Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="gradeX">
+                        <tr ng-repeat="x in customerlistCtrl.current_customer.payment_info.cards">
+                            <td>{{x.brand }}</td>
+                            <td>{{x.last_digits}}</td>
+                            <td>{{x.expiry_date}}</td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="customerlistCtrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="customerlistCtrl.cancel()">Cancel</button>
+</div>

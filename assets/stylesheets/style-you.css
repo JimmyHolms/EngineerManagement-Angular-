@@ -1,0 +1,75 @@
+@charset "utf-8";
+.text-primary-table-heading {
+    color: #3884da;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.text-primary-table-heading a{
+    color: #3884da;
+    font-size: 14px;
+}
+
+
+.fa.fa-user {
+    background: #ffffff none repeat scroll 0 0;
+    border-radius: 40px;
+    color: #9f9f9f;
+    font-size: 24px;
+    height: 45px;
+    line-height: 29px;
+    padding: 6px;
+    text-align: center;
+    width: 45px;
+}
+
+.rightbar-title h6 {
+    border-bottom: 1px solid #505050;
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    padding: 0 0 10px;
+    text-align: center;
+}
+
+
+
+.fa.fa-star-o {
+    color: #FFF;
+    font-size: 30px;
+}
+
+.rig-sidbar .status-online {
+    border-bottom: 1px solid #3f3f3f;
+    display: inline-table;
+    margin: 20px 0 10px;
+    padding: 0 0 15px !important;
+    width: 100%;
+}
+
+
+.btn-rg-side {
+    background: #ffffff none repeat scroll 0 0;
+    border-radius: 5px 0 0 5px;
+    margin: 0;
+    padding: 10px;
+}
+
+
+.btn-rg-side > a {
+    color: #4f4f4f !important;
+    font-weight: bold;
+     text-decoration: none;
+      cursor: pointer;
+}
+
+/*.cst-sty-page ul.pagination a {
+    border: medium none !important;
+    color: #0088cc !important;
+    font-size: 12px;
+}
+
+.cst-sty-page .pagination > li.active a, html.dark .pagination > li.active a {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}*/

@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <button type="button" class="close job_header" ng-click="approvedinvoicesCtrl.cancel()">&times;</button>
+  <h4 class="job_header">Approved Invoice Information</h4>
+</div>
+<div class="modal-body" id="modal-body">
+  <section class="panel">
+    <header class="panel-heading">
+      <h2 class="panel-title">Collect Credit Card Payment</h2>
+    </header>
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="inputDefault">Job Title:</label>
+        <span class="col-md-6 control-label ng-binding">{{approvedinvoicesCtrl.JobDetails.invoice.job_title}}</span>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="inputDefault">Invoice Total:</label>
+        <span class="col-md-6 control-label ng-binding">{{approvedinvoicesCtrl.JobDetails.invoice.total}}</span>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="inputDefault">Charge Type:</label>
+        <span class="col-md-6 control-label ng-binding">{{approvedinvoicesCtrl.currentcard.charge_type}}</span>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="inputDefault">Select Credit Card:</label>
+        <div class="col-md-6">
+		   <select ng-model="approvedinvoicesCtrl.GetCard" ng-options="item.card_id as item.brand + ' ' + item.last_digits  for item in approvedinvoicesCtrl.current_job.cards"></select>
+          <!--<select ng-options="item.brand + ' ' + item.last_digits for item in approvedinvoicesCtrl.current_job.cards" ng-model="approvedinvoicesCtrl.GetCard"></select>
+        --></div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="inputDefault">Description:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="inputDefault" ng-model='approvedinvoicesCtrl.currentcard.charge_description'
+            name='charge_description'>
+        </div>
+        <span class="alert-danger">{{approvedinvoicesCtrl.valids}}</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="approvedinvoicesCtrl.Collectpayment()">Collect Payment</button>
+  <button class="btn btn-warning" type="button" ng-click="approvedinvoicesCtrl.cancel()">Cancel</button>
+</div>

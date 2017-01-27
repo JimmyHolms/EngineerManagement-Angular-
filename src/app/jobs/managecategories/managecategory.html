@@ -1,0 +1,114 @@
+<div class="inner-wrapper">
+    <section role="main" class="content-body">
+        <header class="page-header">
+            <h2>Manage Job Categories</h2>
+            <div class="right-wrapper pull-right">
+                <ol class="breadcrumbs">
+                    <li>
+                        <a href="/dashboard">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li><span>Jobs</span></li>
+					<li><span>Manage Categories</span></li>
+                </ol>
+                <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+            </div>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-success" id="success-delete-alert"><strong>Success!</strong> Category Deleted Successfully.</div>
+                <div class="alert alert-success" id="success-add-alert"><strong>Success!</strong> Category Added Successfully.</div>
+                <div class="alert alert-danger" id="failure-add-alert"><strong>Failure!</strong> Category Addition Failed.</div>
+                <div class="alert alert-success" id="success-update-alert"><strong>Success!</strong> Category Updated Successfully.</div>
+                <div class="alert alert-danger" id="failure-update-alert"><strong>Failure!</strong> Category Update Failed.</div>
+                <div ng-show="managecategoryCtrl.isReadOnlyScreen" class="col-md-11">
+                    <div class="form-group">
+                        <a class="mb-xs mt-xs mr-xs btn btn-default" ng-click="managecategoryCtrl.addCategory()" role="button">Add Category</a>
+                        <section class="panel">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-sm-3 text-center">Category Name</th>
+                                                <th class="col-sm-7 text-center">Child Category</th>
+                                                <th class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="gradeX">
+                                            <tr ng-repeat="category in managecategoryCtrl.categories">
+                                                <td class="text-center">{{category.category_name}}</td>
+                                                <td class="text-center">{{managecategoryCtrl.showChildCategories(category)}}</td>
+                                                <td class="text-center actions">
+                                                    <a href="" data-toggle="tooltip" title="Edit Job" style="margin-right:10px;" ng-click="managecategoryCtrl.editCategory(category)">
+                                                        <i class="fa fa-edit fa-2x" aria-hidden="true"></i></a>
+                                                    <a href="" data-toggle="tooltip" title="Delete Job" ng-click="managecategoryCtrl.deleteCategory(category._id)"> <i class="fa fa-remove fa-2x" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div ng-show="!managecategoryCtrl.isReadOnlyScreen" class="col-md-9">
+                    <section class="panel">
+                        <form name="form" id="form" ng-submit="managecategoryCtrl.uploadData(form)" novalidate>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Category Name</label>
+                                    <div class="col-md-6" ng-class="{ 'has-success': form.child_category_name.$valid && managecategoryCtrl.submitted,
+													'has-error': form.child_category_name.$invalid && managecategoryCtrl.submitted }">
+                                        <input type="text" class="form-control" name="category_name" id="category_name" ng-model="managecategoryCtrl.currentCategory.category_name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Child Category Name</label>
+                                    <div class="col-md-6" >
+                                        <input type="text" class="form-control" name="child_category_name" id="child_category_name" ng-model="managecategoryCtrl.addSubCategoryName">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="" data-toggle="tooltip" title="Add SubCategory" ng-click="managecategoryCtrl.addSubCategory()"><i class="fa fa-plus fa-2x cust_primary" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-9">
+                                    <table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Child Category Name</th>
+                                                <th class="text-center"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="gradeX">
+                                            <tr ng-repeat="subcategory in managecategoryCtrl.currentCategory.child_categories">
+                                                <td class="text-center">{{subcategory}}</td>
+                                                <td>
+                                                    <a href="" data-toggle="tooltip" title="Remove SubCategory" ng-click="managecategoryCtrl.removeSubCategory($index)"><i class="fa fa-close text-danger" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="form-group col-md-12" ng-class="{'has-success': managecategoryCtrl.childcategoryvalidate && managecategoryCtrl.submitted,
+                                                'has-error': !managecategoryCtrl.childcategoryvalidate && managecategoryCtrl.submitted }">
+                                    <p class="help-block" ng-show="!managecategoryCtrl.childcategoryvalidate && managecategoryCtrl.submitted">
+                                        Please input at least one child category!
+                                    </p>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="text-center">
+                                        <button ng-if="managecategoryCtrl.isEdit" type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">&nbsp;&nbsp;&nbsp;Update&nbsp;&nbsp;&nbsp;</button>
+                                        <button ng-if="!managecategoryCtrl.isEdit" type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</button>
+                                        <button type="button" ng-click="managecategoryCtrl.cancel()" class="mb-xs mt-xs mr-xs btn btn-danger">&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end: page -->
+</div>

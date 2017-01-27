@@ -1,0 +1,148 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2>Add New User</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Users</span></li>
+					<li><span>Add</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+		<div class="row">
+			<div class="col-lg-12">
+				<form name="form" class="form" id="form" ng-submit="adduserCtrl.add(form)" novalidate>
+					<section class="panel">
+						<div class="alert alert-success " id="success-alert"><strong>Success!</strong> User Added Successfully.</div>
+						<div id="error-list"></div>
+						<div class="alert alert-danger" id="failure-image-alert"><strong>Failure!</strong> Image Upload Failed.</div>
+						<div class="alert alert-info " id="cancel-alert"><strong>Cancelled!</strong> User Details Reset to Default Values.</div>
+						<div class="alert alert-warning" id="validation-alert"><strong>Missing Info!</strong> User Details Requires More Information.</div>
+
+						<header class="panel-heading">
+							<div class="panel-actions">
+								<!--<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+              <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>-->
+							</div>
+							<h2 class="panel-title">User Details</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="col-sm-3">
+									<div class="thumbnail">
+										<img src="/assets/images/avatar.jpg" id="user_photo" />
+									</div>
+									<div class="text-center customimage_divinput">
+										<span class="btn btn-primary">Choose Image</span>
+										<input type="file" class="btn btn-primary" id="photo_input" name="upload_image" accept="image/*"></span>
+										<!--<span class="btn btn-info" ng-show="$flow.files.length" flow-btn>Change</span>
+										<span class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</span>-->
+									</div>
+								</div>
+								<div class="col-sm-9">
+									<div class="form-group ">
+										<label class="col-md-3 control-label " for="inputDefault ">User Type</label>
+										<div class="col-md-6 ">
+											<select class="form-control " ng-model="adduserCtrl.selectedUserType " ng-options="type.name for type in adduserCtrl.userTypes
+								| orderBy: 'name' track by type.value "></select>
+										</div>
+
+									</div>
+									<div class="form-group" ng-class="{ 'has-success': form.name.$valid && adduserCtrl.submitted,
+													'has-error': form.name.$invalid && adduserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Full Name</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="name" ng-model="adduserCtrl.user.full_name " id="inputDefault " required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.email.$valid && adduserCtrl.submitted,
+													'has-error': form.email.$invalid && adduserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Email</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="email" ng-model="adduserCtrl.user.email " id="inputDefault" required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.password.$valid && adduserCtrl.submitted,
+													'has-error': form.password.$invalid && adduserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Password</label>
+										<div class="col-md-6 ">
+											<input type="password" class="form-control " name="password" ng-model="adduserCtrl.user.password" id="inputDefault " ng-minlength="3"
+												required>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.confirm_password.$valid && adduserCtrl.submitted,
+													'has-error': form.confirm_password.$invalid && adduserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Confirm Password</label>
+										<div class="col-md-6 ">
+											<input type="password" class="form-control " id="inputDefault" name="confirm_password" ng-model="adduserCtrl.confirmPassword"
+												match="adduserCtrl.user.password" ng-minlength="3" required>
+											<p class="help-block" ng-show="form.confirm_password.$invalid && adduserCtrl.submitted">
+												Passwords must match.
+											</p>
+										</div>
+									</div>
+									<div class="form-group " ng-class="{ 'has-success': form.password.$valid && adduserCtrl.submitted,
+													'has-error': form.password.$invalid && adduserCtrl.submitted }">
+										<label class="col-md-3 control-label " for="inputDefault ">Mobile Number</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " ng-model="adduserCtrl.user.mobile_number " id="inputDefault ">
+										</div>
+									</div>
+									<div class="form-group " >
+										<label class="col-md-3 control-label " for="inputDefault ">Street</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " ng-model="adduserCtrl.user.address.street_address" name="street" id="inputDefault ">
+										</div>
+									</div>
+									<div class="form-group " >
+										<label class="col-md-3 control-label " for="inputDefault ">City</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " ng-model="adduserCtrl.user.address.city" name="city" id="inputDefault ">
+										</div>
+									</div>
+									<div class="form-group ">
+										<label class="col-md-3 control-label " for="inputDefault ">State</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " ng-model="adduserCtrl.user.address.state" name="state" id="inputDefault ">
+										</div>
+									</div>
+									<div class="form-group " >
+										<label class="col-md-3 control-label " for="inputDefault ">Country</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="country" ng-model="adduserCtrl.user.address.country" id="inputDefault ">
+										</div>
+									</div>
+									<div class="form-group ">
+										<label class="col-md-3 control-label " for="inputDefault ">Zip Code</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="zip_code" ng-model="adduserCtrl.user.address.zip_code" id="inputDefault ">
+										</div>
+									</div>
+									<div class="form-group ">
+										<label class="col-md-3 control-label " for="inputDefault ">Landline Number</label>
+										<div class="col-md-6 ">
+											<input type="text " class="form-control " name="landline_number" ng-model="adduserCtrl.user.address.phone_number" id="inputDefault ">
+										</div>
+									</div>
+								</div>
+							</div>
+					</section>
+					<div class="form-group ">
+						<div class="text-center">
+							<button type="submit " class="mb-xs mt-xs mr-xs btn btn-primary ">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</button>
+							<button type="button " class="mb-xs mt-xs mr-xs btn btn-danger ">Cancel</button>
+						</div>
+					</div>
+
+				</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

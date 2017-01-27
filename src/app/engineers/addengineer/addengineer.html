@@ -1,0 +1,287 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2>Add New Engineer</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Engineer</span></li>
+					<li><span>Add</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+		<div class="modal-backdrop fade in" id="loading_div" style="display:none;">
+			<div class="loader"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<form name="form" class="form" id="form" ng-submit="addengineerCtrl.add(form)" novalidate>
+					<section class="panel">
+						<div class="alert alert-success " id="success-alert"><strong>Success!</strong> Engineer Added Successfully.</div>
+						<div id="error-list"></div>
+						<div class="alert alert-info " id="cancel-alert"><strong>Cancelled!</strong> Engineer Details Reset to Default Values.</div>
+						<div class="alert alert-danger" id="failure-image-alert"><strong>Failure!</strong> Image Upload Failed.</div>
+						<div class="alert alert-warning" id="validation-alert"><strong>Missing Info!</strong> Engineer Details Requires More Information.</div>
+		<div class="alert alert-danger" id="Conflictfailure-alert"><strong>Failure!</strong>Conflict: Email Address Already Registered</div>				
+						<header class="panel-heading">
+							<div class="panel-actions">
+							</div>
+							<h2 class="panel-title">Engineer Details</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="col-md-3">
+									<div class="thumbnail">
+										<img src="/assets/images/avatar.jpg" id="customer_photo" />
+									</div>
+									<div class="text-center customimage_divinput">
+										<span class="btn btn-primary">Choose Image</span>
+										<input type="file" class="btn btn-primary" id="photo_input" name="upload_image" accept="image/*">
+										<!--<span class="btn btn-info" ng-show="$flow.files.length" flow-btn>Change</span>
+										<span class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</span>-->
+									</div>
+								</div>
+								<div class="col-sm-8 medium_left">
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Engineer Type</label>
+										<div class="col-md-7">
+											<select class="form-control" ng-model="addengineerCtrl.selectedType" ng-options="type.name for type in addengineerCtrl.engineerType track by type.value"></select>
+										</div>
+									</div>
+									<div class="form-group" ng-class="{ 'has-success': form.name.$valid && addengineerCtrl.submitted,
+                                                'has-error': form.name.$invalid && addengineerCtrl.submitted }">
+										<label class="col-md-4 control-label" for="inputDefault">Full Name</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" name="name" id="inputDefault" ng-model="addengineerCtrl.engineer.full_name" required>
+										</div>
+									</div>
+									<div class="form-group" ng-class="{'has-success': form.email.$valid && addengineerCtrl.submitted,
+                                                'has-error': form.email.$invalid && addengineerCtrl.submitted }">
+										<label class="col-md-4 control-label" for="inputDefault">Email</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" name="email" id="inputDefault" ng-model="addengineerCtrl.engineer.email" required>
+										</div>
+									</div>
+									<div class="form-group" ng-class="{'has-success': form.password.$valid && addengineerCtrl.submitted,
+                                                'has-error': form.password.$invalid && addengineerCtrl.submitted }">
+										<label class="col-md-4 control-label" for="inputDefault">Password</label>
+										<div class="col-md-7">
+											<input type="password" class="form-control" id="inputDefault" name="password" ng-model="addengineerCtrl.engineer.password"
+												ng-minlength="3" required>
+											<p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && addengineerCtrl.submitted">
+												Password must be at least 3 characters.
+											</p>
+										</div>
+									</div>
+									<div class="form-group" ng-class="{'has-success': form.confirmPassword.$valid && addengineerCtrl.submitted,
+                                                'has-error': form.confirmPassword.$invalid && addengineerCtrl.submitted }">
+										<label class="col-md-4 control-label" for="inputDefault">Confirm Password</label>
+										<div class="col-md-7">
+											<input type="password" class="form-control" name="confirmPassword" id="confirm_password" ng-model="addengineerCtrl.confirmPassword"
+												match="addengineerCtrl.engineer.password" ng-minlength="3" required>
+											<p class="help-block" ng-show="form.confirmPassword.$error.match && addengineerCtrl.submitted">
+												Passwords must match.
+											</p>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Company Name</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.company_name">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Position</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.designation">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Experience</label>
+										<div class="col-md-7">
+											<input type="number" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.experience">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Per Mile Cost</label>
+										<div class="col-md-7">
+											<input type="number" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.mileage_cost">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Per Hour Cost</label>
+										<div class="col-md-7">
+											<input type="number" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.perhour_cost">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Working Area (miles)</label>
+										<div class="col-md-7">
+											<input type="number" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.working_area">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Mobile Number</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.mobile_number">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Street</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.address.street_address">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">City</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.address.city">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">State</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.address.state">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Country</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.address.country">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Zip Code</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.address.zip_code">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="inputDefault">Landline Number</label>
+										<div class="col-md-7">
+											<input type="text" class="form-control" id="inputDefault" ng-model="addengineerCtrl.engineer.address.phone_number">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="panel">
+						<header class="panel-heading">
+							<div class="panel-actions">
+							</div>
+							<h2 class="panel-title">Skills</h2>
+						</header>
+						<div class="panel-body">
+							<div class="engineerskill col-md-12">
+								<div class="form-group col-md-3">
+									<div class="list-group">
+										<a href="#" class="list-group-item" ng-repeat="skill in addengineerCtrl.skills" ng-click="addengineerCtrl.setCurrentSkill(skill,$index)"
+											id="{{skill._id}}">{{skill.skill_name}}</a>
+									</div>
+									{{addengineerCtrl.setActiveClass()}}
+								</div>
+								<div class="form-group col-md-3 well">
+									<div ng-repeat="childskill in addengineerCtrl.current_skill.child_skills">
+										<label>
+											<input type="checkbox" checklist-model="addengineerCtrl.temp_skills[addengineerCtrl.currentindex].child_skills" checklist-value="childskill"> {{childskill}}</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-success': addengineerCtrl.skillvalidate && addengineerCtrl.submitted,
+                                                'has-error': !addengineerCtrl.skillvalidate && addengineerCtrl.submitted }">
+								<p class="help-block" ng-show="!addengineerCtrl.skillvalidate && addengineerCtrl.submitted">
+									Please input at least one skill!
+								</p>
+							</div>
+						</div>
+					</section>
+					<section class="panel">
+						<header class="panel-heading">
+							<div class="panel-actions">
+							</div>
+							<h2 class="panel-title">Certifications</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group" id="certificate_table">
+								<table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+									<thead>
+										<tr>
+											<th>Title</th>
+											<th>Certification Date</th>
+											<th>Expiry Date</th>
+											<th>Image</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody class="gradeX">
+										<tr ng-repeat="certification in addengineerCtrl.certifications">
+											<td>{{certification.title}}</td>
+											<td>{{certification.certification_date | date:'medium'}}</td>
+											<td>{{certification.expiry_date | date:'medium'}}</td>
+											<td>
+												<ul ng-if="certification.imgSrc!=null" class="enlarge">
+													<li><img src={{certification.imgSrc}} class="certificate_smallimage" /><span><img class="certificate_bigimage" src={{certification.imgSrc}} /><br />{{certification.title}}</span></li>
+												</ul>
+											</td>
+											<td>
+												<a href="" data-toggle="tooltip" title="Remove Certification" ng-click="addengineerCtrl.removeCertification($index)"><i class="fa fa-close text-danger" aria-hidden="true"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="form-group">
+								<div class="col-md-2">
+									<div class="thumbnail img_certificate_div">
+										<img src="/assets/images/no_image.png" id="engineer_certificateimage" />
+									</div>
+									<div class="text-center customimage_divinput">
+										<span class="btn btn-primary">Choose Image</span>
+										<input type="file" class="btn btn-primary" id="certificate_input" name="upload_image" accept="image/*">
+										<!--<span class="btn btn-info" ng-show="$flow.files.length" flow-btn>Change</span>
+										<span class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</span>-->
+									</div>
+								</div>
+								<div class="col-sm-10">
+									<div class="form-group">
+										<div id="required">
+											<label class="col-md-3 control-label">Certification Name</label>
+											<div class="col-md-3">
+												<input type="text" class="form-control" id="name_card" ng-model="addengineerCtrl.currentCertification.title">
+											</div>
+										</div>
+										<label class="col-md-3 control-label">Certification Date</label>
+										<div class="col-md-3">
+											<input type="text" class="form-control" id="certificate_date" placeholder="MM.DD.YYYY" ng-model="addengineerCtrl.currentCertification.certification_date">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Expiry Date</label>
+										<div class="col-md-3">
+											<input type="text" class="form-control" id="expiry_date" placeholder="MM.DD.YYYY" ng-model="addengineerCtrl.currentCertification.expiry_date">
+										</div>
+										<div class="col-md-2">
+											<a href="" data-toggle="tooltip" title="Add Certification" ng-click="addengineerCtrl.addCertification()"><i class="fa fa-plus fa-2x cust_primary" aria-hidden="true"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<div class="form-group">
+						<div class="text-center">
+							<button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</button>
+							<button type="button" ng-click="addengineerCtrl.cancel()" class="mb-xs mt-xs mr-xs btn btn-danger">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

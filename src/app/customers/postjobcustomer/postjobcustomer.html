@@ -1,0 +1,173 @@
+<div class="inner-wrapper">
+	<section role="main" class="content-body">
+		<header class="page-header">
+			<h2>Post New Job</h2>
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="/dashboard">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><span>Post</span></li>
+					<li><span>Job</span></li>
+				</ol>
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+
+
+
+		<div class="row">
+			<div class="col-lg-12">
+				<form name="form" id="form" ng-submit="postjobcustomerCtrl.add()" novalidate>
+					<section class="panel">
+						<div class="alert alert-success" id="success-alert"><strong>Success!</strong> Job Added Successfully.</div>
+						<div class="alert alert-danger" id="failure-alert"><strong>Failure!</strong> Job Addition Failed.</div>
+						<div class="alert alert-info" id="cancel-alert"><strong>Cancelled!</strong> Job Details Reset to Default Values.</div>
+						<div class="alert alert-warning" id="validation-alert"><strong>Missing Info!</strong> Job Details Requires More Information.</div>
+						<header class="panel-heading">
+							<div class="panel-actions">
+								<!--<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+              <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>-->
+							</div>
+							<h2 class="panel-title">Post New Job</h2>
+						</header>
+						<div class="panel-body">
+							<div class="form-group">
+								<select style=" visibility: hidden" readonly class="form-control" name="customer" id="customer" ng-model="postjobcustomerCtrl.selectedCustomer" ng-options="customer.full_name for customer in postjobcustomerCtrl.atlasCustomers  | filter:{user_id: Profile.user_id} track by customer.user_id" ng-change="postjobcustomerCtrl.selectDefaultAddress()" required></select>							
+								<label class="col-md-3 control-label" for="customer">Customer</label>								
+								<div class="col-md-6">
+										
+									<input readonly type="text" class="form-control" name="customer" id="customer" ng-model="Profile.full_name" >
+									</div>
+
+
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="title">Title</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="title" id="title" ng-model="postjobcustomerCtrl.job.title">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="category">Category</label>
+								<div class="col-md-6">
+									<select class="form-control" name="category" id="category" ng-model="postjobcustomerCtrl.selectedCategoryL1" ng-options="category.category_name for category in postjobcustomerCtrl.jobCategories.categories | orderBy:'category_name' track by category.category_name"
+										ng-change="postjobcustomerCtrl.changeChildCategory()"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="subcategory">Sub-Category</label>
+								<div class="col-md-6">
+									<select class="form-control" name="subcategory" id="subcategory" ng-model="postjobcustomerCtrl.selectedCategoryL2" ng-options="option for option in postjobcustomerCtrl.selectedCategoryL1.child_categories | orderBy"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="schedule">Schedule</label>
+								<div class="col-md-6">
+									<select class="form-control" name="schedule" id="schedule" ng-model="postjobcustomerCtrl.selectedSchedule" ng-options="schedule.schedule_name for schedule in postjobcustomerCtrl.jobSchedulingOptions.schedules track by schedule.schedule_name"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="description">Description</label>
+								<div class="col-md-6">
+									<textarea type="text" class="form-control" name="description" id="description" ng-model="postjobcustomerCtrl.job.description"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="address">Customer Addresses</label>
+								<div class="col-md-6">
+									<select class="form-control" name="address" id="address" ng-model="postjobcustomerCtrl.selectedaddress" ng-options="address.site_name for address in postjobcustomerCtrl.selectedCustomer.addresses | orderBy:'site_name'"
+										ng-change="postjobcustomerCtrl.populateAddress(postjobcustomerCtrl.selectedaddress)" required></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="sitename">Site Name</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="sitename" id="sitename" ng-model="postjobcustomerCtrl.job.address.site_name" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="street">Street</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="street" id="street" ng-model="postjobcustomerCtrl.job.address.street_address">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="city">City</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="city" id="city" ng-model="postjobcustomerCtrl.job.address.city">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="state">State</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="state" id="state" ng-model="postjobcustomerCtrl.job.address.state">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="country">Country</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="country" id="country" ng-model="postjobcustomerCtrl.job.address.country">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="postcode">Post Code</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="postcode" id="postcode" ng-model="postjobcustomerCtrl.job.address.zip_code">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="landline">Landline Number</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="landline" id="landline" ng-model="postjobcustomerCtrl.job.address.phone_number">
+</div>
+							</div>
+						</div>
+					</section>
+					<section class="panel">
+						<header class="panel-heading">
+							<div class="panel-actions">
+							</div>
+							<h2 class="panel-title">Job Images</h2>
+						</header>
+						<div class="panel-body">
+							<div flow-init flow-files-submitted="$flow.upload()" flow-name="postjobcustomerCtrl.flowobj" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+								<div class="drop" flow-drop ng-class="dropClass">
+									<span class="btn btn-primary" flow-btn>Upload Image</span>
+									<b>OR</b> Drag And Drop your images here
+								</div>
+								<br/>
+								<div>
+									<div ng-repeat="file in $flow.files" class="gallery-box">
+										<span class="title">{{file.name}}</span>
+										<div class="multi_thumbnail" ng-show="$flow.files.length">
+											<img flow-img="file" />
+										</div>
+										<div class="progress progress-striped" style="margin-bottom:2px" ng-class="{active: file.isUploading()}">
+											<div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100"
+												ng-style="{width: (file.progress() * 100) + '%'}">
+												<span class="sr-only">{{file.progress()}}% Complete</span>
+											</div>
+										</div>
+										<div class="btn-group">
+											<a class="btn btn-xs btn-danger" ng-click="file.cancel()">Remove</a>
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<div class="form-group">
+						<div class="text-center">
+							<button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</button>
+							<button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" ng-click="postjobcustomerCtrl.cancel()">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

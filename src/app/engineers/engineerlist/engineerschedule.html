@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <button type="button" class="close job_header" ng-click="engineerCtrl.cancel()">&times;</button>
+    <h4 class="job_header"><i class="fa fa-calendar fa-1x" aria-hidden="true"></i> Engineer Schedule</h4>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="form-group">
+        <div class="btn-toolbar">
+            <a href="#" role="button" ng-click="engineerCtrl.openAddOrUpdateScheduleDetail(true)" class="pull-right btn btn-primary"><i class="fa fa-bell fa-1x" aria-hidden="true"></i> Add Schedule</a>
+            <div class="btn-group">
+                <button class="btn btn-success" ng-click="engineerCtrl.changeView('listWeek', 'myCalendar1')">List</button>
+                <button class="btn btn-success" ng-click="engineerCtrl.changeView('agendaDay', 'myCalendar1')">Day</button>
+                <button class="btn btn-success" ng-click="engineerCtrl.changeView('agendaWeek', 'myCalendar1')">Week</button>
+                <button class="btn btn-success" ng-click="engineerCtrl.changeView('month', 'myCalendar1')">Month</button>
+            </div>
+        </div>
+        <div ui-calendar="engineerCtrl.uiConfig.calendar" class="calendar" calendar="myCalendar1" ng-model="engineerCtrl.eventSources"></div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="engineerCtrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="engineerCtrl.cancel()">Cancel</button>
+</div>
+<div id="Schedule_Detail" class="modal modal-child" data-backdrop-limit="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <form name="form" class="form" id="form" ng-submit="engineerCtrl.saveSchedule(form)" novalidate>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="engineerCtrl.closeScheduleDetail()">&times;</button>
+                    <h4 ng-show="engineerCtrl.isScheduleAdd" class="modal-title"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i> Add Schedule</h4>
+                    <h4 ng-show="!engineerCtrl.isScheduleAdd" class="modal-title"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i> Edit Schedule</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" ng-class="{'has-error': form.schedule_title.$invalid && engineerCtrl.scheduleSubmitted }">
+                        <label class="col-md-3 control-label"> Title:</label>
+                        <div class="col-md-8 input-group">
+                            <input type="text" class="form-control" name="schedule_title" ng-model="engineerCtrl.schedule_entry.title" required>
+                            <p class="help-block" ng-show="form.schedule_title.$invalid && engineerCtrl.scheduleSubmitted">
+                                Title can not be empty!
+                            </p>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                    <label class="col-md-3 control-label"> Type:</label>
+                    <div class="col-md-8 input-group">
+                        <input type="text" class="form-control" id="inputDefault" ng-model="engineerCtrl.schedule_entry.sch_type">
+                    </div>
+                </div>-->
+                    <div class="form-group" ng-class="{'has-error': engineerCtrl.isDateInCorrect() && engineerCtrl.scheduleSubmitted }">
+                        <label class="col-md-3 control-label"> Start Time:</label>
+                        <div class='col-md-8 input-group date' id='starttime'>
+                            <input type='text' class="form-control" name="schedule_starttime" id="input_sch_start" required/>
+                            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': engineerCtrl.isDateInCorrect() && engineerCtrl.scheduleSubmitted }">
+                        <label class="col-md-3 control-label"> End Time:</label>
+                        <div class='col-md-8 input-group date' id='endtime'>
+                            <input type='text' class="form-control" id="input_sch_end" />
+                            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <p class="col-md-9" style="float:right" ng-class="has-error" ng-show="engineerCtrl.isDateInCorrect() && engineerCtrl.scheduleSubmitted">
+                            Time is not Correct!
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" ng-show="engineerCtrl.isScheduleAdd" aria-hidden="true">Save</button>
+                    <button class="btn btn-danger" ng-show="!engineerCtrl.isScheduleAdd" ng-click="engineerCtrl.deleteSchedule()" aria-hidden="true">Delete</button>
+                    <button type="submit" class="btn btn-default" ng-show="!engineerCtrl.isScheduleAdd" aria-hidden="true">Save Changes</button>
+                    <button class="btn btn-default" ng-click="engineerCtrl.closeScheduleDetail()" aria-hidden="true">Cancel</button>
+                </div>
+        </form>
+        </div>
+    </div>
+</div>

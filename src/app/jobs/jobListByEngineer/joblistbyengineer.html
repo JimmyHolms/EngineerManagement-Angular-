@@ -1,0 +1,80 @@
+<div class="inner-wrapper">
+
+  <section role="main" class="content-body">
+    <header class="page-header">
+      <h2>Job List By Engineer</h2>
+      <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+          <li>
+            <a href="/dashboard">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+          <li><span>Jobs</span></li>
+          <li><span>List By Engineer</span></li>
+        </ol>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+      </div>
+    </header>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="col-md-12">
+          <section class="panel">
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="selectEngineer">Select Engineer</label>
+                <div class="col-md-4">
+                  <select class="form-control" ng-model="joblistCtrl.selectedEngineer" ng-options="engineer.full_name for engineer in joblistCtrl.atlasEngineers | orderBy:'full_name' track by engineer.user_id"
+                    ng-change="joblistCtrl.changeEngineer()"></select>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+                  <thead>
+                    <tr>
+                      <th>Job Category</th>
+                      <th>Customer</th>
+                      <th>Company</th>
+                      <th>Posted</th>
+                      <th>Scheduled</th>
+                      <th>Status</th>
+                      <th>Assigned to</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="gradeX">
+                    <tr ng-repeat="job in joblistCtrl.atlasJobs">
+                      <td>{{job.category_l1}}<br/>{{job.category_l2}}</td>
+                      <td>{{job.customer.full_name}}</td>
+                      <td>{{job.customer.company_name}}</td>
+                      <td>{{job.created_datetime | date:'medium'}}</td>
+                      <td>{{job.scheduled_datetime | date:'medium'}}</td>
+                      <td>
+                        <div class="progress progress-sm progress-half-rounded m-none mt-xs light">
+                          <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                            style="width: 100%;">
+                            {{job.current_status}}
+                          </div><span>100%</span>
+                        </div>
+                      </td>
+                      <td>
+                        {{joblistCtrl.selectedEngineer.full_name}}
+                      </td>
+                      <td class="actions">
+                        <a href="" data-toggle="tooltip" title="Show Job Details" ng-click="joblistCtrl.setCurrentJob(job)"><i class="fa fa-server fa-2x" aria-hidden="true"></i></a>
+                        <a href="" data-toggle="tooltip" title="Edit Job" ng-click="joblistCtrl.setEditJob(job)"> <i class="fa fa-edit fa-2x" aria-hidden="true"></i></a>
+                        <!--<a href=""><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+                              <a href=""><i class="fa fa-map-marker" aria-hidden="true"></i></a>-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end: page -->
+</div>

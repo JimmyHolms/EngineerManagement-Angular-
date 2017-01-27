@@ -1,0 +1,6 @@
+*.log
+*.config
+.idea/
+node_modules/
+lib/
+src/iisnode/

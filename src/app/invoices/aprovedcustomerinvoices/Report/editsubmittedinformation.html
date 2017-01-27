@@ -1,0 +1,134 @@
+<div class="modal-header">
+    <button type="button" class="close job_header" ng-click="submittedinvoicesCtrl.cancel()">&times;</button>
+    <h4 class="job_header">Edit Submitted Invoice Information</h4>
+</div>
+<div class="modal-body" id="modal-body">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Edit Invoice</h2>
+        </header>
+        <div class="panel-body">
+            <div class="form-group" ng-style="border">
+                <label class="col-md-3 control-label">Job Title</label>
+                <span class="col-md-3 control-label ng-binding">{{submittedinvoicesCtrl.current_job.title}}</span>
+                <label class="col-md-3 control-label">Current Status</label>
+                <span class="col-md-3 control-label ng-binding">{{submittedinvoicesCtrl.current_job.invoice.status}}</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Created Date</label>
+                <span class="col-md-3 control-label ng-binding">{{submittedinvoicesCtrl.current_job.created_datetime | date:'medium'}}</span>
+                <label class="col-md-3 control-label">Updated Date</label>
+                <span class="col-md-3 control-label ng-binding">{{submittedinvoicesCtrl.current_job.updated_datetime | date:'medium'}}</span>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Work Item Details</h2>
+        </header>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover table-condensed mb-none dataTable no-footer" role="grid">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Updated By</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tbody class="gradeX">
+                        <tr ng-repeat="item in submittedinvoicesCtrl.current_job.work_items">
+                            <td>{{item.datetime | date:'medium'}}</td>
+                            <td>
+                                <input type="text" class="form-control" style="width: 100px;" id="inputDefault" ng-model='item.name' name='name'></td>
+<td>
+    <input type="text" class="form-control" style="width: 100px;" id="inputDefault" ng-model='item.cost' name='cost'></td>
+<td>{{item.updated_by | date:'medium'}}</td>
+<td><img ng-src="{{item.image_path}}"></img>
+</td>
+</tr>
+<!-- ngRepeat: item in showjobCtrl.selectedJob.work_items -->
+</tbody>
+</table>
+<br>
+<header class="panel-heading">
+    <div class="panel-actions">
+    </div>
+    <h2 class="panel-title">Add New Work Item</h2>
+</header>
+<div class="col-sm-10">
+    <div class="form-group">
+        <div id="required">
+            <label class="col-md-2 control-label">Name</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" ng-model="submittedinvoicesCtrl.current_workitem.name">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="" data-toggle="tooltip" title="Add Work Item" ng-click="submittedinvoicesCtrl.addWorkItem()"><i class="fa fa-plus fa-2x cust_primary" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Cost</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="submittedinvoicesCtrl.current_workitem.cost">
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</section>
+<!--<section class="panel">
+    <header class="panel-heading">
+        <h2 class="panel-title">More Details</h2>
+    </header>
+    <div class="panel-body">
+        <div class="form-group" ng-style="border">
+            <label class="col-md-3 control-label">Charge Description</label>
+            <span class="col-md-3 control-label ng-binding">{{submittedinvoicesCtrl.current_job.invoice.charge_description}}</span>
+            <label class="col-md-3 control-label">Charge Type</label>
+            <span class="col-md-3 control-label ng-binding">{{submittedinvoicesCtrl.current_job.invoice.charge_type}}</span>
+        </div>
+        <div class="form-group" ng-style="border">
+            <label class="col-md-3 control-label">Charge DateTime</label>
+            <span class="col-md-3 control-label ng-binding">{{submittedinvoicesCtrl.current_job.invoice.charge_datetime}}</span>
+            <label class="col-md-3 control-label">Update By</label>
+            <span class="col-md-3 control-label ng-binding">{{submittedinvoicesCtrl.current_job.invoice.update_by}}</span>
+        </div>
+</section>-->
+  <section class="panel">
+    <header class="panel-heading">
+      <h2 class="panel-title"></h2>
+
+      <div class="panel-body">
+        <div class="form-group" ng-style="border">
+          <label class="col-md-3 control-label">Perhour Cost:</label>
+          <span class="col-md-3 control-label ng-binding text-right">{{submittedinvoicesCtrl.editcurrent_job.perhour_cost}}</span>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Mileage Cost:</label>
+          <span class="col-md-3 control-label ng-binding text-right">{{submittedinvoicesCtrl.editcurrent_job.mileage_cost}}</span>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Work Items Cost:</label>
+          <span class="col-md-3 control-label ng-binding text-right">{{submittedinvoicesCtrl.editworkitemsTotal}}</span>
+        </div>
+        <div class="form-group">
+          <hr/>
+          <label class="col-md-3 control-label">Total:</label>
+          <span class="col-md-3 control-label ng-binding text-right"><b>{{submittedinvoicesCtrl.editcurrent_job.total}}</b></span>
+        </div>
+
+      </div>
+    </header>
+  </section>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="submittedinvoicesCtrl.SaveEdit(submittedinvoicesCtrl.current_job)">Save</button>
+    <button class="btn btn-warning" type="button" ng-click="submittedinvoicesCtrl.cancel()">Cancel</button>
+</div>
